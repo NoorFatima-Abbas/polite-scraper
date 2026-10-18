@@ -1,10 +1,4 @@
-import json
-from pathlib import Path
-
 from bs4 import BeautifulSoup
-
-SAMPLE = Path("data/raw/book-sample.html")
-SAMPLE_URL = "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html"
 
 
 def _text(soup, selector, field):
@@ -39,12 +33,3 @@ def parse_book(html, url):
         "upc": upc,
         "url": url,
     }
-
-
-def main():
-    html = SAMPLE.read_bytes().decode("utf-8")
-    print(json.dumps(parse_book(html, SAMPLE_URL), indent=2, ensure_ascii=False))
-
-
-if __name__ == "__main__":
-    main()
